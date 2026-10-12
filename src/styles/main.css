@@ -1,0 +1,17 @@
+
+@layer tokens, base, layout, utilities;
+
+@import './tokens/variables.css' layer(tokens);
+
+@import './base/reset.css' layer(base);
+@import './base/typography.css' layer(base);
+
+@import './layout/container.css' layer(layout);
+
+@import './utilities/utilities.css' layer(utilities);
+@import './utilities/animations.css' layer(utilities);
+
+/* Transición suave entre páginas */
+@view-transition {
+  navigation: auto;
+}
