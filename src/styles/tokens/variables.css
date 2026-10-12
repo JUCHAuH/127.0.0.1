@@ -1,0 +1,39 @@
+/* Design tokens: única fuente de verdad para colores, espaciado, tipografía y movimiento */
+:root {
+  /* Colores */
+  --color-bg: #0b0b10;
+  --color-surface: #15151d;
+  --color-text: #f2f2f5;
+  --color-text-muted: #a0a0b0;
+  --color-primary: #6d5efc;
+  --color-primary-hover: #8577ff;
+
+  /* Tipografía */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-sm: clamp(0.875rem, 0.85rem + 0.1vw, 0.95rem);
+  --fs-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --fs-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  --fs-xl: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --fs-2xl: clamp(2.5rem, 1.8rem + 4vw, 5rem);
+
+  /* Espaciado */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 5rem;
+
+  /* Layout */
+  --container-max: 72rem;
+  --container-gutter: clamp(1rem, 4vw, 2rem);
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+
+  /* Movimiento */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 700ms;
+}

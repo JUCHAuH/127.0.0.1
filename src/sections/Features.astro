@@ -1,0 +1,88 @@
+---
+const features = [
+  { title: 'Rápida', text: 'HTML estático y solo el JavaScript imprescindible.' },
+  { title: 'Animada', text: 'GSAP para secuencias complejas, CSS para lo simple.' },
+  { title: 'Accesible', text: 'Respeta la preferencia de movimiento reducido.' },
+];
+---
+
+<!-- Animación con GSAP: solo esta sección descarga la librería -->
+<section class="section features" data-features>
+  <div class="container">
+    <h2 class="features__title" data-features-title>
+      Todo lo que necesitas, sin peso extra
+    </h2>
+    <ul class="features__grid" role="list">
+      {features.map(({ title, text }) => (
+        <li class="features__card" data-features-card>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .features__title {
+    max-width: 18ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  .features__card {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+  }
+
+  .features__card p {
+    color: var(--color-text-muted);
+  }
+</style>
+
+<script>
+  import { gsap, SplitText } from '@/scripts/animations/gsap.js';
+
+  const section = document.querySelector<HTMLElement>('[data-features]');
+
+  if (section) {
+    const title = section.querySelector('[data-features-title]');
+    const cards = section.querySelectorAll('[data-features-card]');
+
+    // Solo se anima si el usuario no pidió movimiento reducido
+    gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+      SplitText.create(title, {
+        type: 'words',
+        mask: 'words',
+        // Devolver la animación permite rehacerla si el texto se re-divide al redimensionar
+        onSplit: (self) =>
+          gsap.from(self.words, {
+            yPercent: 100,
+            duration: 0.8,
+            stagger: 0.06,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: title, start: 'top 80%' },
+          }),
+      });
+
+      gsap.from(cards, {
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: cards[0], start: 'top 85%' },
+      });
+    });
+  }
+</script>

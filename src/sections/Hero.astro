@@ -1,0 +1,37 @@
+---
+import Button from '@/components/Button.astro';
+---
+
+<!-- Animación con data-reveal: CSS + IntersectionObserver, sin librerías -->
+<section class="hero">
+  <div class="container hero__content">
+    <h1 data-reveal>Profile</h1>
+    <p class="hero__subtitle" data-reveal data-reveal-delay="150">
+      Aquí irá la descripción de tu landing page.
+    </p>
+    <Button href="/page" data-reveal data-reveal-delay="300">
+      Ver más
+    </Button>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+  }
+
+  .hero__content {
+    display: grid;
+    gap: var(--space-4);
+    justify-items: center;
+  }
+
+  .hero__subtitle {
+    max-width: 40ch;
+    font-size: var(--fs-lg);
+    color: var(--color-text-muted);
+  }
+</style>
